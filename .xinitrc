@@ -18,9 +18,8 @@ xsetroot -cursor_name left_ptr
 # Set display layout
 $HOME/.screenlayout/display.sh 
 
-# Launch polybar
-# polybar top &
-# polybar topext &
+# Apply wallpaper
+nitrogen --restore &
 
 setxkbmap -layout us &
 
