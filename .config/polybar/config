@@ -27,6 +27,13 @@ primary = #a0d3eb
 secondary = #e60053
 alert = #bd2c40
 
+d_blue = #084F8C
+dm_blue = #235B8C
+lm_blue = #497AA6
+l_blue = #88A5BF
+white = #F2F2F2
+
+
 ;Colours for the bspwm module
 bspwm-empty = #334f5c
 bspwm-occupied = #4b3a54
@@ -34,7 +41,7 @@ bspwm-occupied = #4b3a54
 [bar/top]
 monitor = eDP-1
 width = 100%
-height = 32
+height = 34
 ;offset-x = 1%
 ;offset-y = 1%
 fixed-center = false
@@ -57,7 +64,7 @@ font-1 = Hurmit NF:size=17;1
 font-2 = icomoon:size=12;1
 
 modules-left = bspwm
-modules-right = filesystem xbacklight pulseaudio memory cpu wlan eth battery temperature date powermenu
+modules-right = filesystem backlight-acpi pulseaudio memory cpu wlan battery temperature date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -118,7 +125,9 @@ mount-0 = /
 
 label-mounted =  %percentage_used%%
 label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
+
+;label-mounted-background = ${colors.dm_blue}
+;label-mounted-padding = 2
 
 [module/bspwm]
 type = internal/bspwm
@@ -176,6 +185,7 @@ bar-empty-foreground = ${colors.foreground-alt}
 inherit = module/xbacklight
 type = internal/backlight
 card = intel_backlight
+enable-scroll = true
 
 [module/cpu]
 type = internal/cpu
@@ -232,38 +242,27 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
+format-prefix = 
 
 label = %date% %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL %percentage%%
+format-volume = <ramp-volume> <label-volume> 
+label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
 
-label-muted = 🔇 muted
+; Launch pavucontrol on right-click
+click-right = pavucontrol
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+label-muted =  muted
 label-muted-foreground = #666
 
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/alsa]
 type = internal/alsa
@@ -339,19 +338,12 @@ type = internal/temperature
 thermal-zone = 0
 warn-temperature = 60
 
-format = <ramp> <label>
-format-underline = #f50a4d
-format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
+format = <label>
+format-warn = <label-warn>
 
-label = %temperature-c%
-label-warn = %temperature-c%
+label =  %temperature-c%
+label-warn =  %temperature-c%
 label-warn-foreground = ${colors.secondary}
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
 
 [module/powermenu]
 type = custom/menu
