@@ -54,10 +54,10 @@ module-margin-right = 2
 
 font-0 = Fira Code:size=12;1
 font-1 = Hurmit NF:size=17;1
-font-2 = icomoon:size=17;1
+font-2 = icomoon:size=12;1
 
 modules-left = bspwm
-modules-right = filesystem xbacklight alsa pulseaudio memory cpu wlan eth battery temperature date powermenu
+modules-right = filesystem xbacklight pulseaudio memory cpu wlan eth battery temperature date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -116,7 +116,7 @@ interval = 25
 
 mount-0 = /
 
-label-mounted =  %percentage_used%%
+label-mounted =  %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
@@ -181,16 +181,14 @@ card = intel_backlight
 type = internal/cpu
 interval = 2
 format-prefix = ""
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
+format-prefix-margin = 1
+
 label = %percentage:2%%
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
+format-prefix = " "
 label = %percentage_used%%
 
 [module/wlan]
@@ -198,22 +196,15 @@ type = internal/network
 interface = wlp2s0
 interval = 3.0
 
-format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
+format-connected =  <label-connected>
 label-connected = %essid%
 
-format-disconnected =
+format-disconnected =  No Connection
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
@@ -401,6 +392,6 @@ screenchange-reload = true
 
 [global/wm]
 margin-top = 5
-margin-bottom = 5
+margin-bottom = 2
 
 ; vim:ft=dosini
