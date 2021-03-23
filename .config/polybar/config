@@ -18,21 +18,23 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #222
+;background = #232d38
+background = #00000000
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
 foreground-alt = #555
 primary = #a0d3eb
 secondary = #e60053
-alert = #bd2c40
+alert= #bd2c40
 
-d_blue = #084F8C
-dm_blue = #235B8C
+d_blue = #1b2329
+;#235B8C
+;#274743 
+dm_blue = #1b2329 
 lm_blue = #497AA6
 l_blue = #88A5BF
 white = #F2F2F2
-
 
 ;Colours for the bspwm module
 bspwm-empty = #334f5c
@@ -42,9 +44,9 @@ bspwm-occupied = #4b3a54
 monitor = eDP-1
 width = 100%
 height = 34
-;offset-x = 1%
-;offset-y = 1%
 fixed-center = false
+
+offset-y = 7
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -54,30 +56,24 @@ line-color = #f00
 border-color = #00000000
 
 padding-left = 0
-padding-right = 2
+padding-right = 1
 
-module-margin-left = 1
-module-margin-right = 2
+module-margin-left = 0
+module-margin-right = 0
 
-font-0 = Fira Code:size=12;1
-font-1 = Hurmit NF:size=17;1
-font-2 = icomoon:size=12;1
+font-0 = Fira Code:size=12;2
+font-1 = Hurmit NF:size=20;4
+font-2 = icomoon:size=12;2
+font-3 = Hurmit NF:size=18;4
 
 modules-left = bspwm
-modules-right = filesystem backlight-acpi pulseaudio memory cpu wlan battery temperature date powermenu
+modules-right = rounded_left_end filesystem backlight-acpi pulseaudio memory cpu wlan battery temperature date powermenu rounded_right_end
 
 tray-position = right
-tray-padding = 2
-;tray-background = #0063ff
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
+tray-padding = 0
 
 cursor-click = pointer
-cursor-scroll = ns-resize
+cursor-scroll = pointer
 
 [bar/topext]
 monitor = HDMI-2
@@ -93,7 +89,7 @@ line-color = #f00
 
 
 font-0 = Fira Code:size=12;1
-font-1 = Hurmit NF:size=12;1
+font-1 = Hurmit NF:size=12:style=light;1
 
 modules-left = bspwm
 
@@ -101,33 +97,33 @@ modules-left = bspwm
 type = internal/xwindow
 label = %title:0:30:...%
 
-[module/xkeyboard]
-type = internal/xkeyboard
-blacklist-0 = num lock
-
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
-
-label-layout = %layout%
-label-layout-underline = ${colors.secondary}
-
-label-indicator-padding = 2
-label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
-
 [module/filesystem]
 type = internal/fs
 interval = 25
 
 mount-0 = /
 
-label-mounted =  %percentage_used%%
-label-unmounted = %mountpoint% not mounted
+label-mounted = %percentage_used%% %{T1}·%{T-} 
+label-mounted-padding-left = 1
+label-mounted-padding-right = 1
+format-mounted-prefix = %{B#1b2329}%{B-}
+format-mounted-prefix-foreground = #16c780
+ 
 
-;label-mounted-background = ${colors.dm_blue}
-;label-mounted-padding = 2
+format-mounted-background = ${colors.dm_blue}
+label-unmounted = %mountpoint% not mounted %{T1}·%{T-} 
+format-unmounted-prefix = ""
+format-unmounted-prefix-background = ${colors.background}
+format-unmounted-padding = 1
+format-unmounted-background = ${colors.d_blue}
+
+[module/rounded_left_end]
+type = custom/text
+content = %{F#1b2329}%{B#00000000}%{T4}%{T-}%{F-}%{B-} 
+
+[module/rounded_right_end]
+type = custom/text
+content = %{F#1b2329}%{B#00000000}%{T4}%{T-}%{F-}%{B-} 
 
 [module/bspwm]
 type = internal/bspwm
@@ -165,21 +161,27 @@ label-song-maxlen = 25
 label-song-ellipsis = true
 
 [module/xbacklight]
-type = internal/xbacklight
+format = <ramp><label>%{B#1b2329}%{T1}·%{T-}%{B-}
+format-background = ${colors.d_blue}
+ramp-background = ${colors.d_blue}
+label-background = ${colors.d_blue}
+label-padding = 1
 
-format = <label> <bar>
-label = BL
-
-bar-width = 10
-bar-indicator = |
-bar-indicator-foreground = #fff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+ramp-5 = 
+ramp-6 = 
+ramp-7 = 
+ramp-8 = 
+ramp-9 = 
+ramp-10 = 
+ramp-11 = 
+ramp-12 = 
+ramp-13 = 
+ramp-14 = 
 
 [module/backlight-acpi]
 inherit = module/xbacklight
@@ -190,47 +192,48 @@ enable-scroll = true
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = ""
-format-prefix-margin = 1
+label = %percentage:2%% %{T1}·%{T-}
 
-label = %percentage:2%%
+label-padding = 1
+format-prefix = ""
+format-prefix-background = ${colors.dm_blue}
+format-prefix-foreground = #16c780
+format-background = ${colors.d_blue}
+format-padding-right = 1
+format-padding-left = 1
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
-label = %percentage_used%%
+format-prefix = ""
+format-prefix-background = ${colors.dm_blue}
+format-prefix-foreground = #436CD3
+format-prefix-padding-left = 1
+label = %percentage_used%% %{T1}·%{T-}
+label-padding = 1
+format-background = ${colors.d_blue}
 
 [module/wlan]
 type = internal/network
 interface = wlp2s0
 interval = 3.0
 
-format-connected =  <label-connected>
-label-connected = %essid%
+label-connected = %essid% %{T1}·%{T-}
+label-connected-padding = 1
+format-connected-prefix = 
+format-connected-prefix-background = ${colors.dm_blue}
+format-connected-prefix-foreground = #436CD3
+format-connected = <label-connected>
+format-connected-background = ${colors.d_blue}
+format-connected-padding-right = 1
 
-format-disconnected =  No Connection
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
-
-
-[module/eth]
-type = internal/network
-interface = net0
-interval = 3.0
-
-format-connected-underline = #55aa55
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
-
-format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
+label-disconnected = Disconnected
+label-disconnected-padding = 1
+format-disconnected-prefix = 
+format-disconnected-prefix-background = ${colors.dm_blue}
+format-disconnected-prefix-foreground = ${colors.secondary}
+format-disconnected = <label-disconnected>%{T1}·%{T-} 
+format-disconnected-background = ${colors.d_blue}
 
 [module/date]
 type = internal/date
@@ -243,15 +246,31 @@ time = %H:%M
 time-alt = %H:%M:%S
 
 format-prefix = 
+format-prefix-background = ${colors.dm_blue}
+format-padding-right = 1
+format-background = ${colors.d_blue}
 
-label = %date% %time%
+label = %date% %time% %{T1}·%{T-}
+
+label-padding = 1
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <ramp-volume> <label-volume> 
+format-volume-background = ${colors.d_blue}
+label-volume-background = ${colors.d_blue}
+format-volume = <ramp-volume><label-volume>%{B#1b2329}%{T1}·%{T-}%{B-}
+
 label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
+label-volume-padding = 1
+ramp-volume-padding-left = 1
+
+format-muted-background = ${colors.d_blue}
+label-muted-background = ${colors.d_blue}
+
+label-muted = %{F#e60053}%{F-} %{T1}·%{T-}
+label-muted-padding = 1
 
 ; Launch pavucontrol on right-click
 click-right = pavucontrol
@@ -259,15 +278,13 @@ click-right = pavucontrol
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
-
-label-muted =  muted
-label-muted-foreground = #666
-
+ramp-volume-background = ${colors.dm_blue}
+ramp-volume-foreground = #16c780
 
 [module/alsa]
 type = internal/alsa
 
-format-volume = <label-volume> <bar-volume>
+fermat-volume = <label-volume> <bar-volume>
 label-volume = VOL
 label-volume-foreground = ${root.foreground}
 
@@ -307,31 +324,34 @@ animation-charging-3 = 
 animation-charging-4 = 
 animation-charging-framerate = 300
 
-format-charging = <animation-charging> <label-charging>
+format-charging = <animation-charging><label-charging>%{T1}·%{T-}
+format-charging-background = ${colors.d_blue}
+format-charging-padding-right = 1
+animation-charging-background = ${colors.dm_blue}
+label-charging-background = ${colors.d_blue}
+label-charging-padding = 1
 
-;format-discharging = <animation-discharging> <label-discharging>
-;format-discharging-underline = ${self.format-charging-underline}
+format-full = <label-full>
+format-full-prefix =
+format-full-prefix-background = ${colors.dm_blue}
+format-full-prefix-foreground = #16c780
+label-full = 100% %{T1}·%{T-}
+label-full-padding = 1
+format-full-background = ${colors.d_blue}
 
-format-full-prefix = " "
-;format-full-prefix-foreground = ${colors.foreground-alt}
-;format-full-underline = ${self.format-charging-underline}
+format-discharging = <ramp-capacity><label-discharging>
+format-discharging-background = ${colors.d_blue}
+format-discharging-padding-right = 1
+format-discharging-padding-left = 1
+format-discharging-padding = 1
+label-discharging-background = ${colors.d_blue}
 
-;ramp-capacity-0 = 
-;ramp-capacity-1 = 
-;ramp-capacity-2 = 
-;ramp-capacity-foreground = ${colors.foreground-alt}
+ramp-capacity-0 =  
+ramp-capacity-1 =  
+ramp-capacity-2 =  
+ramp-capacity-3 = 
 
-;animation-charging-0 = 
-;animation-charging-1 = 
-;animation-charging-2 = 
-;animation-charging-foreground = ${colors.foreground-alt}
-;animation-charging-framerate = 750
-
-;animation-discharging-0 = 
-;animation-discharging-1 = 
-;animation-discharging-2 = 
-;animation-discharging-foreground = ${colors.foreground-alt}
-;animation-discharging-framerate = 750
+ramp-capacity-background = ${colors.dm_blue}
 
 [module/temperature]
 type = internal/temperature
@@ -340,38 +360,53 @@ warn-temperature = 60
 
 format = <label>
 format-warn = <label-warn>
+format-warn-prefix = ""
+format-warn-prefix-background = ${colors.dm_blue}
+format-prefix = ""
+format-prefix-background = ${colors.dm_blue}
+format-prefix-foreground = #436CD3
 
-label =  %temperature-c%
-label-warn =  %temperature-c%
+label = %temperature-c% %{T1}·%{T-}
+label-warn = %temperature-c% %{T1}·%{T-}
 label-warn-foreground = ${colors.secondary}
+label-padding = 1
+label-warn-padding = 1
+
+format-background = ${colors.d_blue}
+format-warn-background = ${colors.d_blue}
 
 [module/powermenu]
 type = custom/menu
 
 expand-right = true
 
-format-spacing = 1
-
-label-open = 
+label-open = 
+label-open-padding = 1
 label-open-foreground = ${colors.secondary}
-label-close =  cancel
+label-open-background = ${colors.d_blue}
+label-close = cancel
+label-close-padding = 1
 label-close-foreground = ${colors.secondary}
+label-close-background = ${colors.d_blue}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
+label-separator-background = ${colors.d_blue}
 
-menu-0-0 = reboot
+format-background = ${colors.d_blue}
+
+menu-0-0 = %{B#1b2329}reboot%{B-}
 menu-0-0-exec = menu-open-1
-menu-0-1 = power off
+menu-0-1 = %{B#1b2329}power off%{B-}
 menu-0-1-exec = menu-open-2
 
-menu-1-0 = cancel
+menu-1-0 = %{B#1b2329}cancel%{B-}
 menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
+menu-1-1 = %{B#1b2329}reboot%{B-}
 menu-1-1-exec = sudo reboot
 
-menu-2-0 = power off
+menu-2-0 = %{B#1b2329}power off%{B-}
 menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
+menu-2-1 = %{B#1b2329}cancel%{B-}
 menu-2-1-exec = menu-open-0
 
 [settings]
@@ -383,7 +418,7 @@ screenchange-reload = true
 ;pseudo-transparency = false
 
 [global/wm]
-margin-top = 5
+margin-top = 4
 margin-bottom = 2
 
 ; vim:ft=dosini
