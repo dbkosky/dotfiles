@@ -64,7 +64,7 @@ module-margin-right = 0
 font-0 = Fira Code:size=12;2
 font-1 = Hurmit NF:size=20;4
 font-2 = icomoon:size=12;2
-font-3 = Hurmit NF:size=18;4
+font-3 = Hurmit NF:pixelsize=18;4
 font-4 = Hurmit NF:size=16;4
 
 modules-left = rounded_left_end bspwm rounded_right_end
@@ -79,20 +79,25 @@ cursor-scroll = pointer
 [bar/topext]
 monitor = HDMI-2
 width = 100%
-height = 27
+height = 34
 fixed-center = false
+
+offset-y = 7
+padding-left = 1
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
 line-size = 3
-line-color = #f00
+line-color = #00000000
 
+font-0 = Fira Code:size=12;2
+font-1 = Hurmit NF:size=20;4
+font-2 = icomoon:size=12;2
+font-3 = Hurmit NF:pixelsize=18;4
+font-4 = Hurmit NF:size=16;4
 
-font-0 = Fira Code:size=12;1
-font-1 = Hurmit NF:size=12:style=light;1
-
-modules-left = bspwm
+modules-left = rounded_left_end bspwm rounded_right_end
 
 [module/xwindow]
 type = internal/xwindow
