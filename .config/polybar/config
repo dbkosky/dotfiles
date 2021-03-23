@@ -55,7 +55,7 @@ line-size = 3
 line-color = #f00
 border-color = #00000000
 
-padding-left = 0
+padding-left = 1
 padding-right = 1
 
 module-margin-left = 0
@@ -65,8 +65,9 @@ font-0 = Fira Code:size=12;2
 font-1 = Hurmit NF:size=20;4
 font-2 = icomoon:size=12;2
 font-3 = Hurmit NF:size=18;4
+font-4 = Hurmit NF:size=16;4
 
-modules-left = bspwm
+modules-left = rounded_left_end bspwm rounded_right_end
 modules-right = rounded_left_end filesystem backlight-acpi pulseaudio memory cpu wlan battery temperature date powermenu rounded_right_end
 
 tray-position = right
@@ -128,21 +129,26 @@ content = %{F#1b2329}%{B#00000000}%{T4}%{T-}%{F-}%{B-}
 [module/bspwm]
 type = internal/bspwm
 
-label-focused = %index%
-label-focused-underline= ${colors.primary}
+label-focused = %{T5}%{T-} 
+label-focused-background = ${colors.d_blue}
 label-focused-padding = 1
+label-focused-foreground = #8c3535
 
-label-occupied = %index%
+label-occupied = %{T5}%{T-}
 label-occupied-padding = 1
-label-occupied-background = ${colors.bspwm-occupied}
+label-occupied-background = ${colors.d_blue}
+label-occupied-foreground = #436CD3
 
-label-urgent = %index%!
-label-urgent-background = ${colors.bspwm-alert}
+label-urgent = %{T5}%{T-}
+label-urgent-background = ${colors.d_blue}
 label-urgent-padding = 1
+label-urgent-foreground = #bd8f11
 
-label-empty = %index%
-label-empty-background = ${colors.bspwm-empty}
+label-empty = %{T5}%{T-}
+label-empty-background = ${colors.d_blue}
 label-empty-padding = 1
+label-empty-foreground = #16c780
+
 
 ; Separator in between workspaces
 ; label-separator = |
