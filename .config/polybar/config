@@ -113,9 +113,8 @@ label-mounted = %percentage_used%% %{T1}·%{T-}
 label-mounted-padding-left = 1
 label-mounted-padding-right = 1
 format-mounted-prefix = %{B#1b2329}%{B-}
-format-mounted-prefix-foreground = #16c780
+format-mounted-prefix-foreground = #436CD3
  
-
 format-mounted-background = ${colors.dm_blue}
 label-unmounted = %mountpoint% not mounted %{T1}·%{T-} 
 format-unmounted-prefix = ""
@@ -229,21 +228,21 @@ type = internal/network
 interface = wlp2s0
 interval = 3.0
 
-label-connected = %essid% %{T1}·%{T-}
+label-connected = %essid% %{F1}%{T1}·%{T-}%{F-}
 label-connected-padding = 1
 format-connected-prefix = 
 format-connected-prefix-background = ${colors.dm_blue}
-format-connected-prefix-foreground = #436CD3
+format-connected-prefix-foreground = #16c780
 format-connected = <label-connected>
 format-connected-background = ${colors.d_blue}
 format-connected-padding-right = 1
 
-label-disconnected = Disconnected
+label-disconnected = Disconnected %{F1}%{T1}·%{T-}%{F-}
 label-disconnected-padding = 1
 format-disconnected-prefix = 
 format-disconnected-prefix-background = ${colors.dm_blue}
 format-disconnected-prefix-foreground = ${colors.secondary}
-format-disconnected = <label-disconnected>%{T1}·%{T-} 
+format-disconnected = <label-disconnected>
 format-disconnected-background = ${colors.d_blue}
 
 [module/date]
@@ -347,15 +346,13 @@ format-full-prefix =
 format-full-prefix-background = ${colors.dm_blue}
 format-full-prefix-foreground = #16c780
 label-full = 100% %{T1}·%{T-}
-label-full-padding = 1
+label-full-padding-left = 1
 format-full-background = ${colors.d_blue}
 
-format-discharging = <ramp-capacity><label-discharging>
+format-discharging = <ramp-capacity><label-discharging>%{B#1b2329}%{T1}·%{T-}%{B-}
 format-discharging-background = ${colors.d_blue}
-format-discharging-padding-right = 1
-format-discharging-padding-left = 1
-format-discharging-padding = 1
 label-discharging-background = ${colors.d_blue}
+label-discharging-padding = 1
 
 ramp-capacity-0 =  
 ramp-capacity-1 =  
@@ -382,6 +379,8 @@ label-warn = %temperature-c% %{T1}·%{T-}
 label-warn-foreground = ${colors.secondary}
 label-padding = 1
 label-warn-padding = 1
+format-prefix-padding-left = 1
+format-warm-prefix-padding-left = 1
 
 format-background = ${colors.d_blue}
 format-warn-background = ${colors.d_blue}

@@ -8,11 +8,7 @@ super + Return
 
 # rofi program launcher/switcher
 super + @space
-	rofi -show run
-
-super + alt + @space
-	rofi -show 
-
+	rofi -show drun -theme "dracula" -drun-icon-theme "Papirus" -show-icons -font "Fira Code 15"
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
