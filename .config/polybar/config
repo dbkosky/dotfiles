@@ -334,7 +334,7 @@ animation-charging-3 = 
 animation-charging-4 = 
 animation-charging-framerate = 300
 
-format-charging = <animation-charging><label-charging>%{T1}·%{T-}
+format-charging = <animation-charging><label-charging>%{B#1b2329}%{T1}·%{T-}%{B-}
 format-charging-background = ${colors.d_blue}
 format-charging-padding-right = 1
 animation-charging-background = ${colors.dm_blue}
