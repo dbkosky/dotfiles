@@ -109,7 +109,7 @@ interval = 25
 
 mount-0 = /
 
-label-mounted = %percentage_used%% %{T1}·%{T-} 
+label-mounted =%{A1:thunar:}%percentage_used%% %{T1}·%{T-}%{A}
 label-mounted-padding-left = 1
 label-mounted-padding-right = 1
 format-mounted-prefix = %{B#1b2329}%{B-}
