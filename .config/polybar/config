@@ -219,7 +219,7 @@ format-prefix = ""
 format-prefix-background = ${colors.dm_blue}
 format-prefix-foreground = #436CD3
 format-prefix-padding-left = 1
-label = %percentage_used%% %{T1}·%{T-}
+label = %{A1:urxvt -e htop:}%percentage_used%% %{T1}·%{T-}%{A}
 label-padding = 1
 format-background = ${colors.d_blue}
 
@@ -228,7 +228,7 @@ type = internal/network
 interface = wlp2s0
 interval = 3.0
 
-label-connected = %essid% %{F1}%{T1}·%{T-}%{F-}
+label-connected = %essid% %{F#dfdfdf}%{T1}·%{T-}%{F-}
 label-connected-padding = 1
 format-connected-prefix = 
 format-connected-prefix-background = ${colors.dm_blue}
@@ -237,7 +237,7 @@ format-connected = <label-connected>
 format-connected-background = ${colors.d_blue}
 format-connected-padding-right = 1
 
-label-disconnected = Disconnected %{F1}%{T1}·%{T-}%{F-}
+label-disconnected = Disconnected %{F#dfdfdf}%{T1}·%{T-}%{F-}
 label-disconnected-padding = 1
 format-disconnected-prefix = 
 format-disconnected-prefix-background = ${colors.dm_blue}
