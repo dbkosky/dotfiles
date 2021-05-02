@@ -48,6 +48,8 @@ fixed-center = false
 
 offset-y = 7
 
+wm-restack = bspwm
+
 background = ${colors.background}
 foreground = ${colors.foreground}
 
@@ -81,6 +83,8 @@ monitor = HDMI-2
 width = 100%
 height = 34
 fixed-center = false
+
+wm-restack = bspwm
 
 offset-y = 7
 padding-left = 1
@@ -430,5 +434,4 @@ screenchange-reload = true
 [global/wm]
 margin-top = 4
 margin-bottom = 2
-
 ; vim:ft=dosini
