@@ -9,6 +9,15 @@ super + Return
 # rofi program launcher/switcher
 super + @space
 	rofi -show drun -theme "dracula" -drun-icon-theme "Papirus" -show-icons -font "Fira Code 15"
+
+# temporary addition for quick testing of rofify project
+super + alt + @space
+	/home/dan/Documents/python_projects/rofify/runscript.sh
+
+# Launch emacs
+super + e
+	emacs
+
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
