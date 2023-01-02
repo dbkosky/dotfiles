@@ -50,5 +50,4 @@ fi
 
 /usr/bin/emacs --daemon &
 picom -fb &
-nitrogen --restore &
 exec bspwm

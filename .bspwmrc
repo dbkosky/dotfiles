@@ -31,9 +31,11 @@ if [ "${#available_top[@]}" -eq "1" ] && [ "${#available_bottom[@]}" -eq "1" ]; 
     bspc wm -O $BOTTOM $TOP
     MONITOR=$TOP polybar top &
     MONITOR=$BOTTOM polybar top &
+    nitrogen --set-zoom-fill --random ~/Pictures/wallpapers/art/dual_screen_top/ &
 else
     bspc monitor eDP -d 1 2 3 4 5 6 7 8 9 10
     polybar top &
+    nitrogen --set-zoom-fill --random ~/Pictures/wallpapers/art/single_screen/ &
 fi
 
 
