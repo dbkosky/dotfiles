@@ -26,9 +26,9 @@ if [ "${#available_top[@]}" -eq "1" ] && [ "${#available_bottom[@]}" -eq "1" ]; 
     BOTTOM=${available_bottom[0]}
     TOP=${available_top[0]}
     # xrandr --output $TOP --above $BOTTOM
+    bspc wm -O $BOTTOM $TOP
     bspc monitor $TOP -d 6 7 8 9 10
     bspc monitor $BOTTOM -d 1 2 3 4 5
-    bspc wm -O $BOTTOM $TOP
     MONITOR=$TOP polybar top &
     MONITOR=$BOTTOM polybar top &
     nitrogen --set-zoom-fill --random ~/Pictures/wallpapers/art/dual_screen_top/ &
