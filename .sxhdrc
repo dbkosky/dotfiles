@@ -18,6 +18,9 @@ super + Escape
 super + e
     emacsclient -c -a 'emacs'
 
+super + BackSpace
+	betterlockscreen -l
+
 #
 # bspwm hotkeys
 #
