@@ -21,6 +21,9 @@ super + e
 super + BackSpace
 	betterlockscreen -l
 
+super + Print
+	  shutter -f
+
 #
 # bspwm hotkeys
 #
