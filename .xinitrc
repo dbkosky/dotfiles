@@ -53,4 +53,5 @@ fi
 
 /usr/bin/emacs --daemon &
 picom -fb &
+conky &
 exec bspwm
