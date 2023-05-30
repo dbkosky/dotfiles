@@ -5,33 +5,40 @@ echo "sxhkd running" > /home/dan/dotfiles/screenlog
 
 # MONITOR SETUP
 monitors=$(bspc query -M --names)
-TOPWIDE=("DisplayPort-0","DisplayPort-1","DisplayPort-2", "DisplayPort-3")
+TOPWIDE=("DisplayPort-0" "DisplayPort-1" "DisplayPort-2" "DisplayPort-3" "DP-1")
 TOP=("HDMI-A-0")
-BOTTOM=("eDP")
+BOTTOM=("eDP" "eDP-1")
 
 available_topwide=()
 available_top=()
 available_bottom=()
 
-echo "monitors: $monitors" > /home/dan/dotfiles/screenlog
+array_contains () {
+    local seeking=$1; shift
+    local in=1
+    for element; do
+        if [[ $element == "$seeking" ]]; then
+            in=0
+            break
+        fi
+    done
+    return $in
+}
+
+echo "monitors: $monitors" >> /home/dan/dotfiles/screenlog
 for value in $monitors
 do
-    if [[ ${TOP[*]} =~ $value ]]; then
-        available_top+=("$value")
-        echo $value
-    fi
-    if [[ ${TOPWIDE[*]} =~ $value ]]; then
-        available_topwide+=("$value")
-    fi
-    if [[ ${BOTTOM[*]} =~ $value ]]; then
-        available_bottom+=("$value")
-    fi
+    array_contains $value ${TOP[@]} && available_top+=("$value")
+    array_contains $value ${TOPWIDE[@]} && available_topwide+=("$value")
+    array_contains $value ${BOTTOM[@]} && available_bottom+=("$value")
 done
+
+echo "topwide: $available_topwide" >> /home/dan/dotfiles/screenlog
+echo "bottom: $available_bottom" >> /home/dan/dotfiles/screenlog
 
 if [ "${#available_top[@]}" -eq "1" ] && [ "${#available_bottom[@]}" -eq "1" ]; then
     BOTTOM=${available_bottom[0]}
     TOP=${available_top[0]}
-
     xrandr --output $TOP --above $BOTTOM --auto
     bspc wm -O $TOP $BOTTOM
     bspc monitor $TOP -d 6 7 8 9 10
@@ -55,14 +62,18 @@ elif [ "${#available_topwide[@]}" -eq "1" ] && [ "${#available_bottom[@]}" -eq "
         --mode 3440x1440 \
         --pos 0x0 \
         --rotate normal
-    bspc wm -O $BOTTOM $TOPWIDE
+    bspc wm -O $TOPWIDE $BOTTOM
     bspc monitor $TOPWIDE -d 1 2 3
     bspc monitor $BOTTOM -d 4 5 6 7 8 9 10
 
     MONITOR=$TOPWIDE polybar top &
     MONITOR=$BOTTOM polybar top &
     nitrogen --set-zoom-fill --random ~/Pictures/wallpapers/art/dual_screen_top/
-
+elif [ "${#available_bottom[@]}" -eq "1" ]; then
+    BOTTOM=${available_bottom[0]}
+    bspc monitor $BOTTOM -d 1 2 3 4 5 6 7 8 9 10
+    polybar &
+    nitrogen --set-zoom-fill --random ~/Pictures/wallpapers/art/single_screen/ &
 else
     bspc monitor eDP -d 1 2 3 4 5 6 7 8 9 10
     polybar top &
