@@ -8,7 +8,10 @@ super + Return
 
 # program launcher
 super + @space
-	rofi -show drun
+	rofi -show drun -show-icons
+
+super + alt + @space
+	rofi -modi spotify:"~/python-environments/rofifyenv/bin/python -m rofify" -show spotify
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -16,7 +19,7 @@ super + Escape
 
 # launch emacs
 super + e
-    emacsclient -c -a 'emacs'
+	emacsclient -c -a 'emacs'
 
 super + BackSpace
 	betterlockscreen -l
