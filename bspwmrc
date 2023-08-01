@@ -7,7 +7,7 @@ echo "sxhkd running" > /home/dan/dotfiles/screenlog
 monitors=$(bspc query -M --names)
 TOPWIDE=("DisplayPort-0" "DisplayPort-1" "DisplayPort-2" "DisplayPort-3" "DP-1")
 TOP=("HDMI-A-0")
-BOTTOM=("eDP" "eDP-1")
+BOTTOM=("eDP" "eDP-1", "eDP1")
 
 available_topwide=()
 available_top=()
@@ -72,7 +72,7 @@ elif [ "${#available_topwide[@]}" -eq "1" ] && [ "${#available_bottom[@]}" -eq "
 elif [ "${#available_bottom[@]}" -eq "1" ]; then
     BOTTOM=${available_bottom[0]}
     bspc monitor $BOTTOM -d 1 2 3 4 5 6 7 8 9 10
-    polybar &
+    MONITOR=$BOTTOM polybar top &
     nitrogen --set-zoom-fill --random ~/Pictures/wallpapers/art/single_screen/ &
 else
     bspc monitor eDP -d 1 2 3 4 5 6 7 8 9 10
